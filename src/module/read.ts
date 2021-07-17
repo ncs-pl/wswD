@@ -3,13 +3,10 @@ import { readLines } from "../../deps.ts";
 
 /**
  * Reads from stdin and return input.
- * @param prompt - String to show before waiting for the user input.
+ * @param msg - String to show before waiting for the user input.
+ * @param defaultValue - Value returned if the user does not enter any input.
  * @returns User input
  */
-export async function read(prompt = "> "): Promise<string | undefined> {
-  await Deno.stdout.write(internalTextEncoder.encode(prompt));
-
-  for await (const readed of readLines(Deno.stdin)) {
-    return readed;
-  }
+export function read(msg = "> ", defaultValue?: string): string | null {
+  return prompt(msg, defaultValue);
 }
