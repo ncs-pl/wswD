@@ -1,6 +1,3 @@
-import { internalTextEncoder } from "../util.ts";
-import { readLines } from "../../deps.ts";
-
 /**
  * Reads from stdin and return input.
  * @param msg - String to show before waiting for the user input.
