@@ -22,7 +22,7 @@ export interface MoveOptions {
 export function mv(sources: MoveOptions[], target: string): void {
   for (const source of sources) {
     moveSync(source.path, target, {
-      overwrite: source.overwrite || false
-    })
+      overwrite: source.overwrite || false,
+    });
   }
 }

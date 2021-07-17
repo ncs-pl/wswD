@@ -8,4 +8,4 @@ export * from "./cp.ts";
 export * from "./mv.ts";
 export * from "./rm.ts";
 export * from "./sleep.ts";
-export * from "./exec.ts"
+export * from "./exec.ts";

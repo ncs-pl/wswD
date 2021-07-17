@@ -19,7 +19,7 @@ export interface RemoveOptions {
 export function rm(sources: RemoveOptions[]): void {
   for (const source of sources) {
     Deno.removeSync(source.path, {
-      recursive: source.recursive || false
-    })
+      recursive: source.recursive || false,
+    });
   }
 }

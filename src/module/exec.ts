@@ -1,4 +1,4 @@
-import { internalTextEncoder, internalTextDecoder } from "../util.ts";
+import { internalTextDecoder, internalTextEncoder } from "../util.ts";
 
 /**
  * Shell used to execute commands.
@@ -12,7 +12,7 @@ export let SHELL = "bash";
  * Defaults to `set -euo pipefail;` (strict mode).
  */
 // deno-lint-ignore prefer-const
-export let PREFIX = "set -euo pipefail;"; 
+export let PREFIX = "set -euo pipefail;";
 
 /**
  * Mode for stderr and stdout
@@ -23,7 +23,7 @@ export let PREFIX = "set -euo pipefail;";
 export type OutputMode = "piped" | "inherit" | "null";
 
 /**
- * Options to execute a command 
+ * Options to execute a command
  */
 interface ExecuteOptions {
   /**
@@ -68,17 +68,23 @@ async function execute(opts: ExecuteOptions): Promise<ExecuteReturn> {
     stdin: "piped",
     stderr: opts.outputMode,
     stdout: opts.outputMode,
-    env: opts.env
+    env: opts.env,
   });
 
-  await subprocess.stdin.write(internalTextEncoder.encode(opts.prefix + opts.cmd + "\n"));
+  await subprocess.stdin.write(
+    internalTextEncoder.encode(opts.prefix + opts.cmd + "\n"),
+  );
   subprocess.stdin.close();
 
   return {
     status: await subprocess.status(),
-    stderr: opts.outputMode === "piped" ? internalTextDecoder.decode(await subprocess.stderrOutput()) : undefined,
-    stdout: opts.outputMode === "piped" ? internalTextDecoder.decode(await subprocess.output()) : undefined
-  }
+    stderr: opts.outputMode === "piped"
+      ? internalTextDecoder.decode(await subprocess.stderrOutput())
+      : undefined,
+    stdout: opts.outputMode === "piped"
+      ? internalTextDecoder.decode(await subprocess.output())
+      : undefined,
+  };
 }
 
 /**
@@ -95,13 +101,16 @@ export interface ExecutionErrorReturn {
  * @throws {ExecutionErrorReturn} Exception if exit code is not 0
  * @returns stdout
  */
-export async function $(cmd: string, env?: Record<string, string>): Promise<string> {
-  const {status, stdout, stderr}: ExecuteReturn = await execute({
+export async function $(
+  cmd: string,
+  env?: Record<string, string>,
+): Promise<string> {
+  const { status, stdout, stderr }: ExecuteReturn = await execute({
     cmd,
     env: env || {},
     outputMode: "piped",
     prefix: PREFIX,
-    shell: SHELL
+    shell: SHELL,
   });
 
   if (status.code === 0) {
@@ -110,24 +119,27 @@ export async function $(cmd: string, env?: Record<string, string>): Promise<stri
     throw {
       code: status.code,
       stdout,
-      stderr
-    }
+      stderr,
+    };
   }
 }
 
 /**
  * Execute a command and convert output into async iterable lines.
- * Idea from https://github.com/linux-china/dx/ 
+ * Idea from https://github.com/linux-china/dx/
  * @throws {ExecutionErrorReturn} Exception if exit code is not 0
  * @returns stdout
  */
-export async function* $a(cmd: string, env?: Record<string, string>): AsyncGenerator<string> {
-  const {status, stdout, stderr}: ExecuteReturn = await execute({
+export async function* $a(
+  cmd: string,
+  env?: Record<string, string>,
+): AsyncGenerator<string> {
+  const { status, stdout, stderr }: ExecuteReturn = await execute({
     cmd,
     env: env || {},
     outputMode: "piped",
     prefix: PREFIX,
-    shell: SHELL
+    shell: SHELL,
   });
 
   if (status.code === 0) {
@@ -139,29 +151,32 @@ export async function* $a(cmd: string, env?: Record<string, string>): AsyncGener
     throw {
       code: status.code,
       stdout,
-      stderr
-    }
+      stderr,
+    };
   }
 }
 
 /**
  * Execute a command but does not return anything.
- * Idea from https://github.com/linux-china/dx/ 
+ * Idea from https://github.com/linux-china/dx/
  * @throws {ExecutionErrorReturn} Exception if exit code is not 0
  */
- export async function $no(cmd: string, env?: Record<string, string>): Promise<void> {
-  const {status, stdout, stderr}: ExecuteReturn = await execute({
+export async function $no(
+  cmd: string,
+  env?: Record<string, string>,
+): Promise<void> {
+  const { status, stdout, stderr }: ExecuteReturn = await execute({
     cmd,
     env: env || {},
     outputMode: "piped",
     prefix: PREFIX,
-    shell: SHELL
+    shell: SHELL,
   });
   if (status.code !== 0) {
     throw {
       code: status.code,
       stdout,
-      stderr
-    }
+      stderr,
+    };
   }
 }

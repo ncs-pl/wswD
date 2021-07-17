@@ -2,7 +2,7 @@ import { internalTextDecoder } from "../util.ts";
 
 /**
  * Returns the content of given files
- * @param paths - paths of the files to read 
+ * @param paths - paths of the files to read
  * @returns - Contents of the files
  */
 export function cat(...paths: string[]): string[] {

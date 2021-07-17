@@ -27,7 +27,7 @@ export function cp(sources: CopyOptions[], target: string): void {
   for (const source of sources) {
     copySync(source.path, target, {
       overwrite: source.overwrite || false,
-      preserveTimestamps: source.preserveTimestamps || false
-    })
+      preserveTimestamps: source.preserveTimestamps || false,
+    });
   }
 }
