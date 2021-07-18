@@ -7,7 +7,7 @@ Deno.test("Should change directory to ~ and then go back", () => {
   cd("~");
   assertNotEquals(Deno.cwd(), originalWorkingDir); // CWD should be ~
 
-  // "-" makes going to the last working dir (originalWorkingDir). 
+  // "-" makes going to the last working dir (originalWorkingDir).
   // When using "-", cd returns the working directory.
   assertEquals(cd("-"), originalWorkingDir);
 });

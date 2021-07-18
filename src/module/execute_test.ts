@@ -1,10 +1,11 @@
-import { assertNotEquals, assertEquals } from "../../dev_deps.ts";
+import { assertEquals, assertNotEquals } from "../../dev_deps.ts";
 import { $, $a, $no } from "./mod.ts";
 
 const command = "ls /"; // Make sure to use a command which use stdout!
 
 Deno.test({
-  name: "Should execute a command using bash and has a non-null string on stdout",
+  name:
+    "Should execute a command using bash and has a non-null string on stdout",
   fn: async () => {
     const run: string = await $(command);
     assertNotEquals(run, "");
