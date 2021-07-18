@@ -10,4 +10,5 @@ export * from "./rm.ts";
 export * from "./sleep.ts";
 export * from "./execute.ts";
 export * from "./exports.ts";
-export * from "./shell_parameters.ts";
+export * from "./shell_env.ts";
+export * from "./resolve_path.ts";
