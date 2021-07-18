@@ -1,7 +1,7 @@
 import { assertEquals, assertNotEquals } from "../../dev_deps.ts";
 import { cd } from "./mod.ts";
 
-Deno.test("cd command", () => {
+Deno.test("Should change directory to ~ and then go back", () => {
   const originalWorkingDir: string = Deno.cwd();
 
   cd("~");
