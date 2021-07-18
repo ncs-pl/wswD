@@ -1,4 +1,5 @@
 import { moveSync } from "../../deps.ts";
+import { resolvePath } from "../util.ts";
 
 /**
  * Options to move a file or a directory
@@ -21,7 +22,8 @@ export interface MoveOptions {
  */
 export function mv(sources: MoveOptions[], target: string): void {
   for (const source of sources) {
-    moveSync(source.path, target, {
+    source.path = resolvePath(source.path);
+    moveSync(source.path, resolvePath(target), {
       overwrite: source.overwrite || false,
     });
   }

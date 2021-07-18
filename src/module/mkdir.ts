@@ -1,3 +1,5 @@
+import { resolvePath } from "../util.ts";
+
 /**
  * Represents a directory to create
  */
@@ -30,6 +32,8 @@ export function mkdir(dirs: DirectoryCreator[]): string[] {
   const paths: string[] = [];
 
   for (const dir of dirs) {
+    dir.path = resolvePath(dir.path);
+
     Deno.mkdirSync(dir.path, {
       recursive: dir.recursive || false,
       mode: dir.mode || 0o777,

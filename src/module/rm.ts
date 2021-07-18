@@ -1,3 +1,5 @@
+import { resolvePath } from "../util.ts";
+
 /**
  * Options to remove a file and/or a directory
  */
@@ -18,6 +20,7 @@ export interface RemoveOptions {
  */
 export function rm(sources: RemoveOptions[]): void {
   for (const source of sources) {
+    source.path = resolvePath(source.path);
     Deno.removeSync(source.path, {
       recursive: source.recursive || false,
     });

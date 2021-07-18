@@ -1,4 +1,5 @@
 import { copySync } from "../../deps.ts";
+import { resolvePath } from "../util.ts";
 
 /**
  * Options to copy a file or a directory
@@ -25,7 +26,7 @@ export interface CopyOptions {
  */
 export function cp(sources: CopyOptions[], target: string): void {
   for (const source of sources) {
-    copySync(source.path, target, {
+    copySync(resolvePath(source.path), resolvePath(target), {
       overwrite: source.overwrite || false,
       preserveTimestamps: source.preserveTimestamps || false,
     });

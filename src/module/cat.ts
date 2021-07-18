@@ -1,4 +1,4 @@
-import { internalTextDecoder } from "../util.ts";
+import { resolvePath } from "../util.ts";
 
 /**
  * Returns the content of given files
@@ -8,8 +8,8 @@ import { internalTextDecoder } from "../util.ts";
 export function cat(...paths: string[]): string[] {
   const contents: string[] = [];
 
-  for (const path in paths) {
-    contents.push(internalTextDecoder.decode(Deno.readFileSync(path)));
+  for (const path of paths) {
+    contents.push(Deno.readTextFileSync(resolvePath(path)));
   }
 
   return contents;

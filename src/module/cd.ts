@@ -1,4 +1,5 @@
 import { homedir } from "../../deps.ts";
+import { resolvePath } from "../util.ts";
 
 /**
  * Store the previous working directory, equivalent to the env OLDPWD on Linux.
@@ -19,11 +20,11 @@ export function cd(path = "~"): string | void {
   if (path === "-") {
     path = PREVIOUS_WORKING_DIRECTORY;
     PREVIOUS_WORKING_DIRECTORY = Deno.cwd();
-    Deno.chdir(path);
+    Deno.chdir(resolvePath(path));
     return path;
   } else if (path.startsWith("~")) {
     path = homedir() + path.substr(1);
     PREVIOUS_WORKING_DIRECTORY = Deno.cwd();
-    Deno.chdir(path);
+    Deno.chdir(resolvePath(path));
   }
 }
