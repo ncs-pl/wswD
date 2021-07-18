@@ -1,5 +1,5 @@
 import { assertEquals } from "../../dev_deps.ts";
-import { cat, resolvePath } from "../../src/module/mod.ts";
+import { cat, resolvePath } from "./mod.ts";
 
 Deno.test("cat command", () => {
   const content = "This is a text!\n";
