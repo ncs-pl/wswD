@@ -21,7 +21,7 @@ jobs:
           deno-version: ${{ matrix.deno_version }}
       - name: Cache dependencies
         run: |
-          deno cache deps.ts
+          deno cache --unstable deps.ts
       - name: Run tests
         run: |
-          deno test --allow-all --cached-only src/
+          deno test --unstable --allow-all --cached-only src/
