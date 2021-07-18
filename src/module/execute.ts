@@ -4,15 +4,13 @@ import { internalTextDecoder, internalTextEncoder } from "../util.ts";
  * Shell used to execute commands.
  * Defaults to `bash`.
  */
-// deno-lint-ignore prefer-const
-export let SHELL = "bash";
+export const DEFAULT_SHELL = "bash";
 
 /**
  * Command which will be prefixed to all commands run
  * Defaults to `set -euo pipefail;` (strict mode).
  */
-// deno-lint-ignore prefer-const
-export let PREFIX = "set -euo pipefail;";
+export const DEFAULT_PREFIX = "set -euo pipefail;";
 
 /**
  * Mode for stderr and stdout
@@ -104,13 +102,15 @@ export interface ExecutionErrorReturn {
 export async function $(
   cmd: string,
   env?: Record<string, string>,
+  prefix = DEFAULT_PREFIX,
+  shell = DEFAULT_SHELL,
 ): Promise<string> {
   const { status, stdout, stderr }: ExecuteReturn = await execute({
     cmd,
     env: env || {},
     outputMode: "piped",
-    prefix: PREFIX,
-    shell: SHELL,
+    prefix,
+    shell,
   });
 
   if (status.code === 0) {
@@ -133,13 +133,15 @@ export async function $(
 export async function* $a(
   cmd: string,
   env?: Record<string, string>,
+  prefix = DEFAULT_PREFIX,
+  shell = DEFAULT_SHELL,
 ): AsyncGenerator<string> {
   const { status, stdout, stderr }: ExecuteReturn = await execute({
     cmd,
     env: env || {},
     outputMode: "piped",
-    prefix: PREFIX,
-    shell: SHELL,
+    prefix,
+    shell,
   });
 
   if (status.code === 0) {
@@ -164,13 +166,15 @@ export async function* $a(
 export async function $no(
   cmd: string,
   env?: Record<string, string>,
+  prefix = DEFAULT_PREFIX,
+  shell = DEFAULT_SHELL,
 ): Promise<void> {
   const { status, stdout, stderr }: ExecuteReturn = await execute({
     cmd,
     env: env || {},
     outputMode: "piped",
-    prefix: PREFIX,
-    shell: SHELL,
+    prefix,
+    shell,
   });
   if (status.code !== 0) {
     throw {
