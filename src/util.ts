@@ -1,4 +1,4 @@
-import { isAbsolute, resolve, toFileUrl } from "../deps.ts";
+import { toFileUrl } from "../deps.ts";
 
 /**
  * Everything in this file is used internally to make the module work,
