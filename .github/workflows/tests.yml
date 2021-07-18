@@ -24,4 +24,4 @@ jobs:
           deno cache --unstable deps.ts
       - name: Run tests
         run: |
-          deno test --unstable --allow-all --cached-only src/
+          deno test --unstable --allow-all src/
