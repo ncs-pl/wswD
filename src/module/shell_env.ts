@@ -1,52 +1,52 @@
 /**
- * Equivalent as $0
+ * Equivalent of $0 in bash
  */
 export const __arg0: string = Deno.mainModule;
 /**
- * Equivalent as $1
+ * Equivalent of $1 in bash
  */
 export const __arg1: string | undefined = Deno.args[0] || undefined;
 /**
- * Equivalent as $2
+ * Equivalent of $2 in bash
  */
 export const __arg2: string | undefined = Deno.args[1] || undefined;
 /**
- * Equivalent as $3
+ * Equivalent of $3 in bash
  */
 export const __arg3: string | undefined = Deno.args[2] || undefined;
 /**
- * Equivalent as $4
+ * Equivalent of $4 in bash
  */
 export const __arg4: string | undefined = Deno.args[3] || undefined;
 /**
- * Equivalent as $5
+ * Equivalent of $5 in bash
  */
 export const __arg5: string | undefined = Deno.args[4] || undefined;
 /**
- * Equivalent as $6
+ * Equivalent of $6 in bash
  */
 export const __arg6: string | undefined = Deno.args[5] || undefined;
 /**
- * Equivalent as $7
+ * Equivalent of $7 in bash
  */
 export const __arg7: string | undefined = Deno.args[6] || undefined;
 /**
- * Equivalent as $8
+ * Equivalent of $8 in bash
  */
 export const __arg8: string | undefined = Deno.args[7] || undefined;
 /**
- * Equivalent as $9
+ * Equivalent of $9 in bash
  */
 export const __arg9: string | undefined = Deno.args[8] || undefined;
 /**
- * Equivalent as $@
+ * Equivalent of $@ in bash
  */
 export const __args: string[] = Deno.args;
 /**
- * Equivalent as $#
+ * Equivalent of $# in bash
  */
 export const __argsLength: number = Deno.args.length;
 /**
- * Equivalent as "$*"
+ * Equivalent of "$*" in bash
  */
 export const __argsAsString: string = Deno.args.join(" ");

@@ -12,7 +12,7 @@ let PREVIOUS_WORKING_DIRECTORY = Deno.cwd();
  * If the given path is a "-" the command changes to the previous working directory and return its name.
  * When no path is given, the command changes to the home directory.
  * @param path - Location to move to.
- * @returns
+ * @returns New working directory when using cd("-")
  */
 export function cd(path = "~"): string | void {
   path = path.trim();

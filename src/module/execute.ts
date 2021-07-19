@@ -1,14 +1,12 @@
 import { internalTextDecoder, internalTextEncoder } from "../util.ts";
 
 /**
- * Shell used to execute commands.
- * Defaults to `bash`.
+ * Default shell used to execute commands.
  */
 export const DEFAULT_SHELL = "bash";
 
 /**
- * Command which will be prefixed to all commands run
- * Defaults to `set -euo pipefail;` (strict mode).
+ * Default command which will be prefixed to all commands run.
  */
 export const DEFAULT_PREFIX = "set -euo pipefail;";
 
@@ -97,6 +95,10 @@ export interface ExecutionErrorReturn {
 /**
  * Execute a command and return stdout.
  * @throws {ExecutionErrorReturn} Exception if exit code is not 0
+ * @param cmd - Command to execute.
+ * @param env - Env to set before executing `cmd`.
+ * @param prefix - Command to execute before executing `cmd`. Defaults to `DEFAULT_PREFIX`
+ * @param shell - Shell to execute `cmd` on. Defaults to `DEFAULT_SHELL`
  * @returns stdout
  */
 export async function $(
@@ -127,7 +129,11 @@ export async function $(
 /**
  * Execute a command and convert output into async iterable lines.
  * Idea from https://github.com/linux-china/dx/
- * @throws {ExecutionErrorReturn} Exception if exit code is not 0
+ * @throws {ExecutionErrorReturn} Exception if exit code is not 0.
+ * @param cmd - Command to execute.
+ * @param env - Env to set before executing `cmd`.
+ * @param prefix - Command to execute before executing `cmd`. Defaults to `DEFAULT_PREFIX`
+ * @param shell - Shell to execute `cmd` on. Defaults to `DEFAULT_SHELL`
  * @returns stdout
  */
 export async function* $a(
@@ -161,6 +167,10 @@ export async function* $a(
 /**
  * Execute a command but does not return anything.
  * Idea from https://github.com/linux-china/dx/
+ * @param cmd - Command to execute.
+ * @param env - Env to set before executing `cmd`.
+ * @param prefix - Command to execute before executing `cmd`. Defaults to `DEFAULT_PREFIX`
+ * @param shell - Shell to execute `cmd` on. Defaults to `DEFAULT_SHELL`
  * @throws {ExecutionErrorReturn} Exception if exit code is not 0
  */
 export async function $no(

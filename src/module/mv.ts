@@ -10,7 +10,7 @@ export interface MoveOptions {
    */
   path: string;
   /**
-   * Overwrite existing file or directory. Defaults to `false
+   * Overwrite existing file or directory. Defaults to `false`
    */
   overwrite?: boolean;
 }
