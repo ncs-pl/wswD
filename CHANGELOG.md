@@ -17,6 +17,9 @@
 - `rm` and its tests
 - `sleep` and its tests
 - `resolvePath` utility function
-- global variables `__args0`, `__args1`, `__args2`, `__args3`, `__args4`, `__args5`, `__args6`, `__args7`, `__args8`, `__args9`, `__args`, `__argsAsString`, `__argsLength`
+- global variables `__args0`, `__args1`, `__args2`, `__args3`, `__args4`,
+  `__args5`, `__args6`, `__args7`, `__args8`, `__args9`, `__args`,
+  `__argsAsString`, `__argsLength`
 - constant variables `DEFAULT_PREFIX`, `DEFAULT_SHELL`
-- internal utilities `internalTextDecoder`, `internalTextEncoder`, `resolvePath()`
+- internal utilities `internalTextDecoder`, `internalTextEncoder`,
+  `resolvePath()`
